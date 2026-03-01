@@ -40,7 +40,7 @@ export type Post = {
   title: string;
   slug: string;
   excerpt: string;
-  body: PortableTextBlock[] | string;
+  body: PortableTextBlock[] | string | null;
   publishedAt: string;
   featuredImageUrl?: string;
 };

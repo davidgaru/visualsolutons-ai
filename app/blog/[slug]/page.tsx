@@ -28,14 +28,14 @@ export default async function BlogPostPage({
           <div className="article__body">
             {Array.isArray(post.body) ? (
               <PortableTextRenderer value={post.body} />
-            ) : (
+            ) : post.body ? (
               post.body
                 .split("\n")
                 .filter(Boolean)
                 .map((paragraph) => (
                   <p key={paragraph.slice(0, 24)}>{paragraph}</p>
                 ))
-            )}
+            ) : null}
           </div>
         </div>
       </article>
