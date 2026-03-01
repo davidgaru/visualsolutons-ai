@@ -5,6 +5,11 @@ import type { Project } from "@/lib/types";
 
 export const revalidate = 60;
 
+function safeTags(tags: unknown): string[] {
+  if (!Array.isArray(tags)) return [];
+  return tags.filter((tag): tag is string => typeof tag === "string");
+}
+
 function renderProjectMedia(project: Project) {
   if ((project.mediaType === "youtube" && project.videoUrl) || (project.videoUrl && !project.videoFileUrl)) {
     return (
@@ -42,26 +47,28 @@ export default async function WorkPage() {
 
       <section className="section">
         <div className="container work-list">
-          {projects.map((project, index) => (
-            <Reveal key={project._id} delay={index * 0.05}>
-              <article className="work-item">
-                <div className="work-item__meta">
-                  <p className="work-item__client">{project.client}</p>
-                  <h2>{project.title}</h2>
-                  <p className="work-item__outcome">{project.tags.slice(0, 3).join(" · ")}</p>
-                  <div className="tag-list">
-                    {project.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
+          {projects.map((project, index) => {
+            const tags = safeTags(project.tags);
 
-                <div className="work-item__visual">
-                  {renderProjectMedia(project)}
-                </div>
-              </article>
-            </Reveal>
-          ))}
+            return (
+              <Reveal key={project._id} delay={index * 0.05}>
+                <article className="work-item">
+                  <div className="work-item__meta">
+                    <p className="work-item__client">{project.client}</p>
+                    <h2>{project.title}</h2>
+                    <p className="work-item__outcome">{tags.slice(0, 3).join(" · ")}</p>
+                    <div className="tag-list">
+                      {tags.map((tag) => (
+                        <span key={tag}>{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="work-item__visual">{renderProjectMedia(project)}</div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
     </main>

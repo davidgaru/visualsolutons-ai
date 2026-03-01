@@ -14,7 +14,7 @@ export const projectsQuery = groq`*[_type == "project"] | order(_createdAt desc)
   client,
   summary,
   outcome,
-  tags,
+  "tags": coalesce(tags, []),
   mediaType,
   videoUrl,
   "videoFileUrl": videoFile.asset->url,

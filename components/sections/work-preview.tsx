@@ -17,6 +17,11 @@ const placeholderProject: Project = {
   mediaType: "none"
 };
 
+function safeTags(tags: unknown): string[] {
+  if (!Array.isArray(tags)) return [];
+  return tags.filter((tag): tag is string => typeof tag === "string");
+}
+
 function renderProjectMedia(project: Project) {
   if ((project.mediaType === "youtube" && project.videoUrl) || (project.videoUrl && !project.videoFileUrl)) {
     return (
@@ -57,9 +62,7 @@ export function WorkPreview({ projects }: WorkPreviewProps) {
         <div className="neo-work__layout">
           <Reveal>
             <article className="neo-work__featured">
-              <div className="neo-work__featured-media">
-                {renderProjectMedia(featured)}
-              </div>
+              <div className="neo-work__featured-media">{renderProjectMedia(featured)}</div>
 
               <div className="neo-work__featured-meta">
                 <p className="work-item__client">{featured.client}</p>
@@ -70,15 +73,19 @@ export function WorkPreview({ projects }: WorkPreviewProps) {
           </Reveal>
 
           <div className="neo-work__rail">
-            {secondary.map((project, index) => (
-              <Reveal key={project._id} delay={index * 0.08}>
-                <article className="neo-work__rail-item">
-                  <p className="work-item__client">{project.client}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.tags.slice(0, 3).join(" · ")}</p>
-                </article>
-              </Reveal>
-            ))}
+            {secondary.map((project, index) => {
+              const tags = safeTags(project.tags);
+
+              return (
+                <Reveal key={project._id} delay={index * 0.08}>
+                  <article className="neo-work__rail-item">
+                    <p className="work-item__client">{project.client}</p>
+                    <h3>{project.title}</h3>
+                    <p>{tags.slice(0, 3).join(" · ")}</p>
+                  </article>
+                </Reveal>
+              );
+            })}
 
             {secondary.length === 0 && (
               <Reveal delay={0.1}>
