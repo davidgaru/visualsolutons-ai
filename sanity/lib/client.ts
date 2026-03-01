@@ -5,6 +5,7 @@ export const sanityClient = createClient({
   projectId: projectId || "placeholder",
   dataset: dataset || "production",
   apiVersion,
-  useCdn: true,
+  // Prefer fresh data over edge-cached responses for CMS-driven pages.
+  useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN
 });
