@@ -56,6 +56,28 @@ export const blockContentSchema = defineType({
           title: "Caption"
         }
       ]
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "embed",
+      title: "Embed",
+      fields: [
+        {
+          name: "url",
+          type: "url",
+          title: "URL",
+          description: "Paste a YouTube, Vimeo, Facebook, or any link to embed",
+          validation: (rule) => rule.required()
+        },
+        {
+          name: "caption",
+          type: "string",
+          title: "Caption"
+        }
+      ],
+      preview: {
+        select: { title: "url", subtitle: "caption" }
+      }
     })
   ]
 });

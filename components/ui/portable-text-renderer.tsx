@@ -9,6 +9,105 @@ type PortableTextRendererProps = {
   value: PortableTextBlock[];
 };
 
+function getYouTubeId(url: string): string | null {
+  const match = url.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([a-zA-Z0-9_-]{11})/
+  );
+  return match?.[1] ?? null;
+}
+
+function getVimeoId(url: string): string | null {
+  const match = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  return match?.[1] ?? null;
+}
+
+function getFacebookVideoEmbedUrl(url: string): string | null {
+  if (!/facebook\.com|fb\.watch/i.test(url)) return null;
+  return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false`;
+}
+
+function EmbedBlock({ value }: { value: { url?: string; caption?: string } }) {
+  const url = value?.url;
+  if (!url) return null;
+
+  const youtubeId = getYouTubeId(url);
+  if (youtubeId) {
+    return (
+      <Reveal>
+        <figure className="pt-embed">
+          <div className="pt-embed__wrapper">
+            <iframe
+              src={`https://www.youtube.com/embed/${youtubeId}`}
+              title="YouTube video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="pt-embed__caption">{value.caption}</figcaption>
+          )}
+        </figure>
+      </Reveal>
+    );
+  }
+
+  const vimeoId = getVimeoId(url);
+  if (vimeoId) {
+    return (
+      <Reveal>
+        <figure className="pt-embed">
+          <div className="pt-embed__wrapper">
+            <iframe
+              src={`https://player.vimeo.com/video/${vimeoId}?dnt=1`}
+              title="Vimeo video"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="pt-embed__caption">{value.caption}</figcaption>
+          )}
+        </figure>
+      </Reveal>
+    );
+  }
+
+  const fbUrl = getFacebookVideoEmbedUrl(url);
+  if (fbUrl) {
+    return (
+      <Reveal>
+        <figure className="pt-embed">
+          <div className="pt-embed__wrapper">
+            <iframe
+              src={fbUrl}
+              title="Facebook video"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="pt-embed__caption">{value.caption}</figcaption>
+          )}
+        </figure>
+      </Reveal>
+    );
+  }
+
+  return (
+    <Reveal>
+      <figure className="pt-embed">
+        <a href={url} className="pt-embed__link-card" target="_blank" rel="noopener noreferrer">
+          <span className="pt-embed__link-icon">&#8599;</span>
+          <span className="pt-embed__link-url">{url}</span>
+        </a>
+        {value.caption && (
+          <figcaption className="pt-embed__caption">{value.caption}</figcaption>
+        )}
+      </figure>
+    </Reveal>
+  );
+}
+
 const components: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
@@ -90,7 +189,8 @@ const components: PortableTextComponents = {
           </figure>
         </Reveal>
       );
-    }
+    },
+    embed: EmbedBlock
   }
 };
 
