@@ -1,0 +1,39 @@
+import { notFound } from "next/navigation";
+import { getPostBySlug, getPosts } from "@/lib/content";
+
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
+export default async function BlogPostPage({
+  params
+}: {
+  params: { slug: string };
+}) {
+  const post = await getPostBySlug(params.slug);
+
+  if (!post) notFound();
+
+  return (
+    <main>
+      <article className="article">
+        <div className="container">
+          <p className="eyebrow">{new Date(post.publishedAt).toLocaleDateString("en-US")}</p>
+          <h1>{post.title}</h1>
+          <p className="article__excerpt">{post.excerpt}</p>
+          <div className="article__body">
+            {post.body
+              .split("\n")
+              .filter(Boolean)
+              .map((paragraph) => (
+                <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+              ))}
+          </div>
+        </div>
+      </article>
+    </main>
+  );
+}

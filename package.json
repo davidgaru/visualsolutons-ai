@@ -1,0 +1,35 @@
+{
+  "name": "visualsolutions-ai",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "studio": "sanity dev"
+  },
+  "dependencies": {
+    "@fontsource/manrope": "^5.1.1",
+    "@fontsource/oswald": "^5.1.1",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "@sanity/image-url": "^1.1.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.18.2",
+    "next": "^14.2.24",
+    "next-sanity": "^9.8.40",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sanity": "^3.74.1",
+    "three": "^0.172.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.24",
+    "typescript": "^5.7.2"
+  }
+}
