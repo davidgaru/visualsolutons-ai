@@ -74,8 +74,8 @@ export const postsQuery = groq`*[_type == "post"] | order(publishedAt desc) {
   title,
   "slug": slug.current,
   excerpt,
-  body,
-  publishedAt
+  publishedAt,
+  "featuredImageUrl": featuredImage.asset->url
 }`;
 
 export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0] {
