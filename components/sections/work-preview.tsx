@@ -61,7 +61,7 @@ export function WorkPreview({ projects }: WorkPreviewProps) {
 
         <div className="neo-work__layout">
           <Reveal>
-            <article className="neo-work__featured">
+            <Link href={`/work/${featured.slug}`} className="neo-work__featured">
               <div className="neo-work__featured-media">{renderProjectMedia(featured)}</div>
 
               <div className="neo-work__featured-meta">
@@ -69,7 +69,7 @@ export function WorkPreview({ projects }: WorkPreviewProps) {
                 <h3>{featured.title}</h3>
                 <p>{featured.summary}</p>
               </div>
-            </article>
+            </Link>
           </Reveal>
 
           <div className="neo-work__rail">
@@ -78,11 +78,11 @@ export function WorkPreview({ projects }: WorkPreviewProps) {
 
               return (
                 <Reveal key={project._id} delay={index * 0.08}>
-                  <article className="neo-work__rail-item">
+                  <Link href={`/work/${project.slug}`} className="neo-work__rail-item">
                     <p className="work-item__client">{project.client}</p>
                     <h3>{project.title}</h3>
                     <p>{tags.slice(0, 3).join(" · ")}</p>
-                  </article>
+                  </Link>
                 </Reveal>
               );
             })}

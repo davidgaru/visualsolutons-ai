@@ -5,6 +5,7 @@ import { isSanityConfigured } from "@/sanity/env";
 import {
   postBySlugQuery,
   postsQuery,
+  projectBySlugQuery,
   projectsQuery,
   servicesQuery
 } from "@/sanity/lib/queries";
@@ -28,6 +29,19 @@ export async function getProjects(): Promise<Project[]> {
     return projects?.length ? projects : fallbackProjects;
   } catch {
     return fallbackProjects;
+  }
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  if (!isSanityConfigured) {
+    return fallbackProjects.find((p) => p.slug === slug) ?? null;
+  }
+
+  try {
+    const project = await sanityClient.fetch<Project | null>(projectBySlugQuery, { slug });
+    return project ?? fallbackProjects.find((p) => p.slug === slug) ?? null;
+  } catch {
+    return fallbackProjects.find((p) => p.slug === slug) ?? null;
   }
 }
 

@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import { PageHero } from "@/components/ui/page-hero";
 import { Reveal } from "@/components/ui/reveal";
 import { getProjects } from "@/lib/content";
@@ -10,27 +12,37 @@ function safeTags(tags: unknown): string[] {
   return tags.filter((tag): tag is string => typeof tag === "string");
 }
 
-function renderProjectMedia(project: Project) {
-  if ((project.mediaType === "youtube" && project.videoUrl) || (project.videoUrl && !project.videoFileUrl)) {
-    return (
-      <iframe
-        src={project.videoUrl}
-        title={project.title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-    );
-  }
-
-  if ((project.mediaType === "upload" && project.videoFileUrl) || (project.videoFileUrl && !project.videoUrl)) {
-    return <video src={project.videoFileUrl} autoPlay muted loop playsInline preload="metadata" />;
-  }
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const tags = safeTags(project.tags);
+  const isFirst = index === 0;
 
   return (
-    <div className="work-item__placeholder">
-      <span>Upload Project Video</span>
-      <p>Sanity Studio supports direct video upload per project.</p>
-    </div>
+    <Reveal delay={index * 0.05}>
+      <Link
+        href={`/work/${project.slug}`}
+        className={`work-archive__card ${isFirst ? "work-archive__card--full" : ""}`}
+      >
+        {project.posterImageUrl ? (
+          <Image
+            src={project.posterImageUrl}
+            alt={project.title}
+            fill
+            sizes={isFirst ? "100vw" : "(max-width: 900px) 100vw, 50vw"}
+            className="work-archive__img"
+          />
+        ) : (
+          <div className="work-archive__gradient" />
+        )}
+
+        <div className="work-archive__overlay">
+          <p className="work-item__client">{project.client}</p>
+          <h2 className="work-archive__title">{project.title}</h2>
+          {tags.length > 0 && (
+            <p className="work-archive__tags">{tags.slice(0, 3).join(" · ")}</p>
+          )}
+        </div>
+      </Link>
+    </Reveal>
   );
 }
 
@@ -46,29 +58,12 @@ export default async function WorkPage() {
       />
 
       <section className="section">
-        <div className="container work-list">
-          {projects.map((project, index) => {
-            const tags = safeTags(project.tags);
-
-            return (
-              <Reveal key={project._id} delay={index * 0.05}>
-                <article className="work-item">
-                  <div className="work-item__meta">
-                    <p className="work-item__client">{project.client}</p>
-                    <h2>{project.title}</h2>
-                    <p className="work-item__outcome">{tags.slice(0, 3).join(" · ")}</p>
-                    <div className="tag-list">
-                      {tags.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="work-item__visual">{renderProjectMedia(project)}</div>
-                </article>
-              </Reveal>
-            );
-          })}
+        <div className="container">
+          <div className="work-archive__grid">
+            {projects.map((project, index) => (
+              <ProjectCard key={project._id} project={project} index={index} />
+            ))}
+          </div>
         </div>
       </section>
     </main>

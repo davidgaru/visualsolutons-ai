@@ -1,8 +1,19 @@
+import type { PortableTextBlock } from "@portabletext/react";
+
 export type Service = {
   _id: string;
   title: string;
   summary: string;
   deliverables: string[];
+};
+
+export type GalleryImage = {
+  _key: string;
+  alt?: string;
+  caption?: string;
+  asset: {
+    url: string;
+  };
 };
 
 export type Project = {
@@ -17,6 +28,11 @@ export type Project = {
   videoUrl?: string;
   videoFileUrl?: string;
   posterImageUrl?: string;
+  year?: string;
+  category?: string;
+  featured?: boolean;
+  body?: PortableTextBlock[];
+  gallery?: GalleryImage[];
 };
 
 export type Post = {
@@ -24,6 +40,7 @@ export type Post = {
   title: string;
   slug: string;
   excerpt: string;
-  body: string;
+  body: PortableTextBlock[] | string;
   publishedAt: string;
+  featuredImageUrl?: string;
 };

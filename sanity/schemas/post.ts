@@ -14,7 +14,7 @@ export const postSchema = defineType({
       validation: (rule) => rule.required()
     }),
     defineField({ name: "excerpt", title: "Excerpt", type: "text", rows: 3, validation: (rule) => rule.required() }),
-    defineField({ name: "body", title: "Body", type: "text", rows: 12 }),
+    defineField({ name: "body", title: "Body", type: "blockContent" }),
     defineField({ name: "publishedAt", title: "Published At", type: "datetime", validation: (rule) => rule.required() }),
     defineField({ name: "featuredImage", title: "Featured Image", type: "image", options: { hotspot: true } })
   ]

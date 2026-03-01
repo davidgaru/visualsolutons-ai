@@ -48,7 +48,10 @@ export const fallbackProjects: Project[] = [
       "A cinematic campaign system crafted for speed, precision, and premium automotive storytelling.",
     outcome: "Multi-format ad rollout with high audience retention and stronger launch visibility.",
     tags: ["Automotive", "Advertising", "AI Visuals"],
-    mediaType: "none"
+    mediaType: "none",
+    year: "2026",
+    category: "Campaign Film",
+    featured: true
   },
   {
     _id: "prj-2",
@@ -59,7 +62,10 @@ export const fallbackProjects: Project[] = [
       "Visual language expansion for branded film assets, balancing trust, scale, and modern aesthetics.",
     outcome: "Expanded premium visual identity across campaign film touchpoints.",
     tags: ["Finance", "Film", "VFX"],
-    mediaType: "none"
+    mediaType: "none",
+    year: "2025",
+    category: "Brand Film",
+    featured: true
   },
   {
     _id: "prj-3",
@@ -70,7 +76,10 @@ export const fallbackProjects: Project[] = [
       "AI-assisted motion suite designed for high-frequency campaign publishing without visual fatigue.",
     outcome: "Faster campaign production and consistent creative quality across placements.",
     tags: ["Telecom", "Animation", "Social"],
-    mediaType: "none"
+    mediaType: "none",
+    year: "2025",
+    category: "Animation",
+    featured: false
   },
   {
     _id: "prj-4",
@@ -81,7 +90,10 @@ export const fallbackProjects: Project[] = [
       "Creative R&D sprint delivering production-ready visual concepts for multiple client pitches.",
     outcome: "Improved concept approval rate with standout premium visual prototypes.",
     tags: ["Agency", "R&D", "Pitch"],
-    mediaType: "none"
+    mediaType: "none",
+    year: "2025",
+    category: "Branding",
+    featured: false
   },
   {
     _id: "prj-5",
@@ -92,7 +104,10 @@ export const fallbackProjects: Project[] = [
       "Cinematic sequence toolkit designed for launch films, dealer screens, and digital placements.",
     outcome: "Unified launch storytelling across film and digital environments.",
     tags: ["Automotive", "Film", "AI"],
-    mediaType: "none"
+    mediaType: "none",
+    year: "2024",
+    category: "Campaign Film",
+    featured: false
   }
 ];
 
