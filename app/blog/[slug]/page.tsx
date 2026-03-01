@@ -8,7 +8,9 @@ export const revalidate = 60;
 
 export async function generateStaticParams() {
   const posts = await getPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts
+    .filter((post) => typeof post.slug === "string")
+    .map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({

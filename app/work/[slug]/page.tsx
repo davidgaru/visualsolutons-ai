@@ -13,7 +13,9 @@ export const revalidate = 60;
 
 export async function generateStaticParams() {
   const projects = await getProjects();
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects
+    .filter((project) => typeof project.slug === "string")
+    .map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
