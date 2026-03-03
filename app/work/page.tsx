@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/page-hero";
 import { Reveal } from "@/components/ui/reveal";
+import { WorkBgVideo } from "@/components/sections/work-bg-video";
 import { getProjects } from "@/lib/content";
 import type { Project } from "@/lib/types";
 
@@ -51,7 +52,8 @@ export default async function WorkPage() {
   const projects = allProjects.filter((p) => typeof p.slug === "string" && p.title);
 
   return (
-    <main>
+    <main className="work-page">
+      <WorkBgVideo />
       <PageHero
         eyebrow="Work"
         title="Selected projects."
