@@ -44,6 +44,13 @@ export const projectBySlugQuery = groq`*[_type == "project" && slug.current == $
     _type == "image" => {
       ...,
       "asset": { "url": asset->url }
+    },
+    _type == "beforeAfter" => {
+      ...,
+      "beforeVideoUrl": beforeVideo.asset->url,
+      "afterVideoUrl": afterVideo.asset->url,
+      "beforeImageUrl": beforeImage.asset->url,
+      "afterImageUrl": afterImage.asset->url
     }
   },
   gallery[] {
@@ -88,6 +95,13 @@ export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][
     _type == "image" => {
       ...,
       "asset": { "url": asset->url }
+    },
+    _type == "beforeAfter" => {
+      ...,
+      "beforeVideoUrl": beforeVideo.asset->url,
+      "afterVideoUrl": afterVideo.asset->url,
+      "beforeImageUrl": beforeImage.asset->url,
+      "afterImageUrl": afterImage.asset->url
     }
   },
   publishedAt,

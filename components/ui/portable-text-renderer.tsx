@@ -4,6 +4,8 @@ import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/react";
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
+import { VideoCompareSlider } from "@/components/ui/video-compare-slider";
+import { ImageCompareSlider } from "@/components/ui/image-compare-slider";
 
 type PortableTextRendererProps = {
   value: PortableTextBlock[];
@@ -190,7 +192,43 @@ const components: PortableTextComponents = {
         </Reveal>
       );
     },
-    embed: EmbedBlock
+    embed: EmbedBlock,
+    beforeAfter: ({ value }) => {
+      let slider: React.ReactNode = null;
+
+      if (value.mediaType === "image" && value.beforeImageUrl && value.afterImageUrl) {
+        slider = (
+          <ImageCompareSlider
+            beforeSrc={value.beforeImageUrl}
+            afterSrc={value.afterImageUrl}
+            beforeLabel={value.beforeLabel}
+            afterLabel={value.afterLabel}
+          />
+        );
+      } else if (value.beforeVideoUrl && value.afterVideoUrl) {
+        slider = (
+          <VideoCompareSlider
+            beforeSrc={value.beforeVideoUrl}
+            afterSrc={value.afterVideoUrl}
+            beforeLabel={value.beforeLabel}
+            afterLabel={value.afterLabel}
+          />
+        );
+      }
+
+      if (!slider) return null;
+
+      return (
+        <Reveal>
+          <figure className="pt-compare">
+            {slider}
+            {value.caption && (
+              <figcaption className="pt-image__caption">{value.caption}</figcaption>
+            )}
+          </figure>
+        </Reveal>
+      );
+    }
   }
 };
 

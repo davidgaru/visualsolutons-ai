@@ -1,0 +1,622 @@
+[
+  {
+    "of": [
+      {
+        "marks": {
+          "annotations": [
+            {
+              "fields": [
+                {
+                  "validation": [
+                    {
+                      "rules": [
+                        {
+                          "flag": "uri",
+                          "constraint": {
+                            "options": {
+                              "scheme": [
+                                "/^http$/",
+                                "/^https$/",
+                                "/^mailto$/"
+                              ],
+                              "allowRelative": true,
+                              "relativeOnly": false,
+                              "allowCredentials": false
+                            }
+                          }
+                        }
+                      ],
+                      "level": "error"
+                    }
+                  ],
+                  "name": "href",
+                  "type": "url",
+                  "title": "URL"
+                }
+              ],
+              "name": "link",
+              "type": "object"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "strong",
+              "title": "Bold"
+            },
+            {
+              "value": "em",
+              "title": "Italic"
+            }
+          ]
+        },
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Bullet"
+          },
+          {
+            "value": "number",
+            "title": "Numbered"
+          }
+        ],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          },
+          {
+            "value": "h2",
+            "title": "H2"
+          },
+          {
+            "value": "h3",
+            "title": "H3"
+          },
+          {
+            "value": "h4",
+            "title": "H4"
+          },
+          {
+            "value": "blockquote",
+            "title": "Quote"
+          }
+        ],
+        "of": [],
+        "type": "block"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text"
+          },
+          {
+            "name": "caption",
+            "type": "string"
+          }
+        ],
+        "type": "image"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  },
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Paste a YouTube, Vimeo, Facebook, or any link to embed",
+            "name": "url",
+            "type": "url",
+            "title": "URL"
+          },
+          {
+            "name": "caption",
+            "type": "string"
+          }
+        ],
+        "type": "object",
+        "name": "embed"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "video",
+            "options": {
+              "list": [
+                {
+                  "title": "Video",
+                  "value": "video"
+                },
+                {
+                  "title": "Image",
+                  "value": "image"
+                }
+              ],
+              "layout": "radio"
+            },
+            "name": "mediaType",
+            "type": "string"
+          },
+          {
+            "options": {
+              "accept": "video/*"
+            },
+            "hidden": "conditional",
+            "name": "beforeVideo",
+            "type": "file"
+          },
+          {
+            "options": {
+              "accept": "video/*"
+            },
+            "hidden": "conditional",
+            "name": "afterVideo",
+            "type": "file"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "hidden": "conditional",
+            "name": "beforeImage",
+            "type": "image"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "hidden": "conditional",
+            "name": "afterImage",
+            "type": "image"
+          },
+          {
+            "initialValue": "Before",
+            "name": "beforeLabel",
+            "type": "string"
+          },
+          {
+            "initialValue": "After",
+            "name": "afterLabel",
+            "type": "string"
+          },
+          {
+            "name": "caption",
+            "type": "string"
+          }
+        ],
+        "type": "object",
+        "name": "beforeAfter",
+        "title": "Before / After"
+      }
+    ],
+    "name": "blockContent",
+    "type": "array"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "summary",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "deliverables",
+        "type": "array"
+      }
+    ],
+    "name": "service",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "client",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "summary",
+        "type": "text"
+      },
+      {
+        "rows": 3,
+        "name": "outcome",
+        "type": "text"
+      },
+      {
+        "name": "year",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Campaign Film",
+              "value": "Campaign Film"
+            },
+            {
+              "title": "Brand Film",
+              "value": "Brand Film"
+            },
+            {
+              "title": "VFX",
+              "value": "VFX"
+            },
+            {
+              "title": "Animation",
+              "value": "Animation"
+            },
+            {
+              "title": "Photography",
+              "value": "Photography"
+            },
+            {
+              "title": "Branding",
+              "value": "Branding"
+            },
+            {
+              "title": "Web Design",
+              "value": "Web Design"
+            }
+          ]
+        },
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "tags",
+        "type": "array"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "YouTube URL",
+              "value": "youtube"
+            },
+            {
+              "title": "Uploaded Video File",
+              "value": "upload"
+            },
+            {
+              "title": "No Video Yet",
+              "value": "none"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "none",
+        "name": "mediaType",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "hidden": "conditional",
+        "name": "videoUrl",
+        "type": "url",
+        "title": "YouTube Video URL"
+      },
+      {
+        "options": {
+          "accept": "video/*"
+        },
+        "hidden": "conditional",
+        "name": "videoFile",
+        "type": "file",
+        "title": "Uploaded Video"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "posterImage",
+        "type": "image"
+      },
+      {
+        "name": "body",
+        "type": "blockContent"
+      },
+      {
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text"
+              },
+              {
+                "name": "caption",
+                "type": "string"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "gallery",
+        "type": "array"
+      }
+    ],
+    "name": "project",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "excerpt",
+        "type": "text"
+      },
+      {
+        "name": "body",
+        "type": "blockContent"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "publishedAt",
+        "type": "datetime"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "featuredImage",
+        "type": "image"
+      }
+    ],
+    "name": "post",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "siteTitle",
+        "type": "string"
+      },
+      {
+        "name": "contactEmail",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "bookingUrl",
+        "type": "url",
+        "title": "Booking URL"
+      },
+      {
+        "rows": 3,
+        "name": "seoDescription",
+        "type": "text",
+        "title": "SEO Description"
+      }
+    ],
+    "name": "siteSettings",
+    "type": "document"
+  }
+]
