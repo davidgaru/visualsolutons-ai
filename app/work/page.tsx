@@ -47,7 +47,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default async function WorkPage() {
-  const projects = await getProjects();
+  const allProjects = await getProjects();
+  const projects = allProjects.filter((p) => typeof p.slug === "string" && p.title);
 
   return (
     <main>

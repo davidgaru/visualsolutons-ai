@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import type { Project } from "@/lib/types";
@@ -6,50 +7,17 @@ type WorkPreviewProps = {
   projects: Project[];
 };
 
-const placeholderProject: Project = {
-  _id: "placeholder-project",
-  title: "Upload First Project",
-  slug: "upload-first-project",
-  client: "Visual Solutions AI",
-  summary: "Add project details in Sanity to populate this section.",
-  outcome: "",
-  tags: ["Campaign", "Film", "AI"],
-  mediaType: "none"
-};
-
 function safeTags(tags: unknown): string[] {
   if (!Array.isArray(tags)) return [];
   return tags.filter((tag): tag is string => typeof tag === "string");
 }
 
-function renderProjectMedia(project: Project) {
-  if ((project.mediaType === "youtube" && project.videoUrl) || (project.videoUrl && !project.videoFileUrl)) {
-    return (
-      <iframe
-        src={project.videoUrl}
-        title={project.title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-    );
-  }
-
-  if ((project.mediaType === "upload" && project.videoFileUrl) || (project.videoFileUrl && !project.videoUrl)) {
-    return <video src={project.videoFileUrl} autoPlay muted loop playsInline preload="metadata" />;
-  }
-
-  return (
-    <div className="work-item__placeholder">
-      <span>Featured Reel</span>
-      <p>Upload video in Sanity Studio</p>
-    </div>
-  );
-}
-
 export function WorkPreview({ projects }: WorkPreviewProps) {
-  const feed = projects.length > 0 ? projects : [placeholderProject];
-  const featured = feed[0];
-  const secondary = feed.slice(1, 4);
+  const valid = projects.filter((p) => typeof p.slug === "string" && p.title);
+  if (valid.length === 0) return null;
+
+  const featured = valid[0];
+  const secondary = valid.slice(1, 3);
 
   return (
     <section className="neo-work">
@@ -59,44 +27,57 @@ export function WorkPreview({ projects }: WorkPreviewProps) {
           <h2>Selected films and campaign visuals.</h2>
         </Reveal>
 
-        <div className="neo-work__layout">
+        <div className="neo-work__grid">
           <Reveal>
-            <Link href={`/work/${featured.slug}`} className="neo-work__featured">
-              <div className="neo-work__featured-media">{renderProjectMedia(featured)}</div>
-
-              <div className="neo-work__featured-meta">
-                <p className="work-item__client">{featured.client}</p>
-                <h3>{featured.title}</h3>
-                <p>{featured.summary}</p>
+            <Link href={`/work/${featured.slug}`} className="neo-work__card neo-work__card--hero">
+              {featured.posterImageUrl ? (
+                <Image
+                  src={featured.posterImageUrl}
+                  alt={featured.title}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 1280px"
+                  className="neo-work__card-img"
+                />
+              ) : (
+                <div className="neo-work__card-gradient" />
+              )}
+              <div className="neo-work__card-overlay" />
+              <div className="neo-work__card-content">
+                <p className="neo-work__card-client">{featured.client}</p>
+                <h3 className="neo-work__card-title neo-work__card-title--hero">{featured.title}</h3>
+                <p className="neo-work__card-summary">{featured.summary}</p>
               </div>
             </Link>
           </Reveal>
 
-          <div className="neo-work__rail">
-            {secondary.map((project, index) => {
-              const tags = safeTags(project.tags);
-
-              return (
-                <Reveal key={project._id} delay={index * 0.08}>
-                  <Link href={`/work/${project.slug}`} className="neo-work__rail-item">
-                    <p className="work-item__client">{project.client}</p>
-                    <h3>{project.title}</h3>
-                    <p>{tags.slice(0, 3).join(" · ")}</p>
-                  </Link>
-                </Reveal>
-              );
-            })}
-
-            {secondary.length === 0 && (
-              <Reveal delay={0.1}>
-                <article className="neo-work__rail-item neo-work__rail-item--placeholder">
-                  <p className="work-item__client">Pipeline</p>
-                  <h3>More projects coming soon.</h3>
-                  <p>Continue adding entries in Sanity to expand this reel.</p>
-                </article>
+          {secondary.map((project, index) => {
+            const tags = safeTags(project.tags);
+            return (
+              <Reveal key={project._id} delay={(index + 1) * 0.08}>
+                <Link href={`/work/${project.slug}`} className="neo-work__card">
+                  {project.posterImageUrl ? (
+                    <Image
+                      src={project.posterImageUrl}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 900px) 100vw, 50vw"
+                      className="neo-work__card-img"
+                    />
+                  ) : (
+                    <div className="neo-work__card-gradient" />
+                  )}
+                  <div className="neo-work__card-overlay" />
+                  <div className="neo-work__card-content">
+                    <p className="neo-work__card-client">{project.client}</p>
+                    <h3 className="neo-work__card-title">{project.title}</h3>
+                    {tags.length > 0 && (
+                      <p className="neo-work__card-tags">{tags.slice(0, 3).join(" · ")}</p>
+                    )}
+                  </div>
+                </Link>
               </Reveal>
-            )}
-          </div>
+            );
+          })}
         </div>
 
         <Reveal delay={0.24}>
