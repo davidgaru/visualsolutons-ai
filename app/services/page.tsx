@@ -1,22 +1,13 @@
-import Link from "next/link";
 import { ClientsStrip } from "@/components/sections/clients-strip";
-import { PageHero } from "@/components/ui/page-hero";
-import { Reveal } from "@/components/ui/reveal";
+import { ServicesHero } from "@/components/sections/services-hero";
+import { ServicesCinemaCards } from "@/components/sections/services-cinema-cards";
+import type { ServiceCardData } from "@/components/sections/services-cinema-cards";
+import { ServicesDifferentiators } from "@/components/sections/services-differentiators";
 import { getServices } from "@/lib/content";
 
 export const revalidate = 60;
 
-type ServiceVisual = {
-  id: string;
-  title: string;
-  summary: string;
-  deliverables: string[];
-  tailored: string;
-  mediaSrc: string;
-  mediaLabel: string;
-};
-
-const serviceBlueprints: ServiceVisual[] = [
+const serviceBlueprints: ServiceCardData[] = [
   {
     id: "advertising",
     title: "AI Advertising Visuals",
@@ -78,91 +69,17 @@ export default async function ServicesPage() {
 
   return (
     <main>
-      <PageHero
+      <ServicesHero
         eyebrow="Capabilities"
         title="Tailored AI visual solutions for ads, film, VFX, and animation."
         description="Every project is custom. We adapt models, workflow, and finishing to solve your exact production problem."
       />
 
-      <section className="section">
-        <div className="container services-cinema">
-          <Reveal>
-            <p className="eyebrow">Service Lanes</p>
-            <h2>Built for unique production challenges.</h2>
-          </Reveal>
-
-          <div className="services-cinema__list">
-            {services.map((service, index) => (
-              <Reveal key={service.id} delay={index * 0.06}>
-                <article className={`services-cinema__item${index % 2 === 1 ? " is-reverse" : ""}`}>
-                  <div className="services-cinema__media">
-                    <video src={service.mediaSrc} autoPlay muted loop playsInline preload="metadata" />
-                    <div className="services-cinema__media-shade" aria-hidden />
-                    <p className="services-cinema__media-label">{service.mediaLabel}</p>
-                  </div>
-
-                  <div className="services-cinema__copy">
-                    <p className="eyebrow">0{index + 1}</p>
-                    <h3>{service.title}</h3>
-                    <p>{service.summary}</p>
-                    <p className="services-cinema__tailored">{service.tailored}</p>
-
-                    <div className="services-cinema__chips">
-                      {service.deliverables.map((item) => (
-                        <span key={item}>{item}</span>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServicesCinemaCards services={services} />
 
       <ClientsStrip />
 
-      <section className="section section--dense">
-        <div className="container services-tailored">
-          <Reveal>
-            <p className="eyebrow">Tailored Solutions</p>
-            <h2>Not template output. Problem-specific execution.</h2>
-          </Reveal>
-
-          <div className="services-tailored__grid">
-            <Reveal>
-              <article className="card">
-                <h3>Unique Production Constraints</h3>
-                <p>
-                  We scope around your timeline, budget, legal constraints, and delivery formats from day one.
-                </p>
-              </article>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <article className="card">
-                <h3>Impossible or Broken Shots</h3>
-                <p>
-                  Character swaps, shot fixes, and visual corrections are custom-built for each problematic frame.
-                </p>
-              </article>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <article className="card">
-                <h3>Brand-Specific Visual Language</h3>
-                <p>
-                  We tune style, motion, and finishing to your brand voice so the result looks intentional, not generic.
-                </p>
-              </article>
-            </Reveal>
-          </div>
-        </div>
-
-        <div className="container section-cta">
-          <Link href="/contact" className="button">
-            Book a Call
-          </Link>
-        </div>
-      </section>
+      <ServicesDifferentiators />
     </main>
   );
 }

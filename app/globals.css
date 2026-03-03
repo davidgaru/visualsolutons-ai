@@ -1438,6 +1438,293 @@ p {
   margin-top: 1.6rem;
 }
 
+/* ===================================================
+   SERVICES HERO
+   =================================================== */
+
+.services-hero {
+  position: relative;
+  padding: 11rem 0 5rem;
+  overflow: hidden;
+}
+
+.services-hero__orb {
+  position: absolute;
+  top: -8%;
+  right: -6%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(204, 176, 122, 0.12) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.services-hero__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.services-hero__eyebrow {
+  margin: 0;
+}
+
+.services-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5.6vw, 4.4rem);
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  line-height: 1.08;
+  max-width: 18ch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.3em;
+  margin: 0;
+}
+
+.services-hero__word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.services-hero__word {
+  display: inline-block;
+}
+
+.services-hero__description {
+  max-width: 48ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ===================================================
+   SERVICE CINEMA CARDS (svc-card)
+   =================================================== */
+
+.svc-cards {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.svc-cards__heading {
+  max-width: 16ch;
+}
+
+.svc-cards__list {
+  margin-top: 1.2rem;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.svc-card {
+  border: 1px solid rgba(214, 188, 145, 0.24);
+  border-radius: 26px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+  min-height: 380px;
+  background: linear-gradient(160deg, rgba(25, 20, 14, 0.92), rgba(11, 9, 6, 0.9));
+  box-shadow: var(--shadow-soft);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.svc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+  border-color: rgba(214, 188, 145, 0.36);
+}
+
+.svc-card--reverse {
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+}
+
+.svc-card--reverse .svc-card__media {
+  order: 2;
+}
+
+.svc-card--reverse .svc-card__copy {
+  order: 1;
+}
+
+.svc-card__media {
+  position: relative;
+  min-height: 380px;
+  overflow: hidden;
+  border-right: 1px solid rgba(214, 188, 145, 0.16);
+}
+
+.svc-card--reverse .svc-card__media {
+  border-right: 0;
+  border-left: 1px solid rgba(214, 188, 145, 0.16);
+}
+
+.svc-card__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(0.95) brightness(0.68);
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+              filter 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.svc-card:hover .svc-card__video {
+  transform: scale(1.035);
+  filter: saturate(0.92) contrast(0.95) brightness(0.78);
+}
+
+.svc-card__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.66) 100%),
+    radial-gradient(circle at 80% 20%, rgba(248, 229, 190, 0.15), transparent 44%);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.svc-card:hover .svc-card__shade {
+  opacity: 0.7;
+}
+
+.svc-card__media-label {
+  position: absolute;
+  left: 0.7rem;
+  bottom: 0.7rem;
+  border: 1px solid rgba(225, 197, 147, 0.36);
+  border-radius: 999px;
+  padding: 0.3rem 0.52rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #efe2c8;
+  background: rgba(8, 6, 4, 0.66);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.svc-card:hover .svc-card__media-label {
+  border-color: rgba(225, 197, 147, 0.52);
+}
+
+.svc-card__copy {
+  padding: 1.15rem;
+  display: grid;
+  align-content: center;
+  gap: 0.6rem;
+}
+
+.svc-card__index {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  opacity: 0.85;
+  line-height: 1;
+}
+
+.svc-card__copy h3 {
+  font-size: clamp(1.4rem, 2.25vw, 2.3rem);
+  letter-spacing: 0.04em;
+}
+
+.svc-card__copy p {
+  color: #cdbca0;
+}
+
+.svc-card__tailored {
+  border-left: 1px solid rgba(218, 191, 145, 0.36);
+  padding-left: 0.62rem;
+  color: #e1d0b1;
+  font-size: 0.9rem;
+}
+
+.svc-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.svc-card__chips span {
+  border: 1px solid rgba(216, 188, 143, 0.28);
+  border-radius: 999px;
+  padding: 0.24rem 0.5rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #eadcbf;
+  background: rgba(205, 173, 114, 0.08);
+}
+
+/* ===================================================
+   SERVICES DIFFERENTIATORS (svc-diff)
+   =================================================== */
+
+.svc-diff {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.svc-diff__heading {
+  max-width: 16ch;
+}
+
+.svc-diff__grid {
+  margin-top: 1.3rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.svc-diff__card {
+  background: rgba(12, 10, 7, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 194, 151, 0.18);
+  border-radius: var(--radius-md);
+  padding: 1.6rem;
+  display: grid;
+  gap: 0.6rem;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 420ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.svc-diff__card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(217, 194, 151, 0.32);
+  box-shadow: 0 0 20px rgba(204, 176, 122, 0.06),
+              inset 0 1px 0 rgba(217, 194, 151, 0.12);
+}
+
+.svc-diff__number {
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.svc-diff__card h3 {
+  font-size: 1.2rem;
+  letter-spacing: 0.03em;
+}
+
+.svc-diff__card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .services-cinema {
   display: grid;
   gap: 0.95rem;
@@ -1912,6 +2199,27 @@ p {
   .neo-services__experience {
     grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.54fr);
   }
+
+  .svc-card,
+  .svc-card--reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .svc-card--reverse .svc-card__media {
+    order: 0;
+  }
+
+  .svc-card--reverse .svc-card__copy {
+    order: 0;
+  }
+
+  .svc-card__media,
+  .svc-card--reverse .svc-card__media {
+    min-height: 300px;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(214, 188, 145, 0.16);
+  }
 }
 
 @media (max-width: 900px) {
@@ -2041,6 +2349,14 @@ p {
 
   .container {
     width: min(1320px, calc(100% - 2rem));
+  }
+
+  .services-hero {
+    padding-top: 8.8rem;
+  }
+
+  .svc-diff__grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -2197,6 +2513,55 @@ p {
 
   .chip {
     min-width: 70px;
+  }
+
+  .services-hero {
+    padding-top: 8.2rem;
+    padding-bottom: 3.2rem;
+  }
+
+  .services-hero__orb {
+    width: 320px;
+    height: 320px;
+    filter: blur(40px);
+  }
+
+  .services-hero__title {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+
+  .svc-card {
+    min-height: 0;
+    border-radius: 20px;
+  }
+
+  .svc-card__media {
+    min-height: 230px;
+  }
+
+  .svc-card__copy {
+    padding: 0.86rem;
+    gap: 0.48rem;
+  }
+
+  .svc-card__copy h3 {
+    font-size: clamp(1.22rem, 7vw, 1.76rem);
+  }
+
+  .svc-card__index {
+    font-size: 2rem;
+  }
+
+  .svc-card__tailored {
+    font-size: 0.82rem;
+  }
+
+  .svc-diff__number {
+    font-size: 2.4rem;
+  }
+
+  .svc-diff__card {
+    padding: 1.2rem;
   }
 }
 
