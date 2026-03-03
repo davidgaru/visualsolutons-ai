@@ -2933,6 +2933,21 @@ p {
   text-overflow: ellipsis;
 }
 
+/* Before / After comparison block in portable text */
+
+.pt-compare {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin: 3rem -3rem;
+  border-radius: var(--radius-md);
+}
+
+.pt-compare .video-compare {
+  position: absolute;
+  inset: 0;
+}
+
 /* ===================================================
    PROJECT OUTCOME
    =================================================== */
