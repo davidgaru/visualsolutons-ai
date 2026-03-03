@@ -3,6 +3,7 @@ import { ServicesHero } from "@/components/sections/services-hero";
 import { ServicesCinemaCards } from "@/components/sections/services-cinema-cards";
 import type { ServiceCardData } from "@/components/sections/services-cinema-cards";
 import { ServicesDifferentiators } from "@/components/sections/services-differentiators";
+import { ServicesBgVideo } from "@/components/sections/services-bg-video";
 import { getServices } from "@/lib/content";
 
 export const revalidate = 60;
@@ -68,7 +69,8 @@ export default async function ServicesPage() {
   });
 
   return (
-    <main>
+    <main className="services-page">
+      <ServicesBgVideo />
       <ServicesHero
         eyebrow="Capabilities"
         title="Tailored AI visual solutions for ads, film, VFX, and animation."
