@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { ProjectDetailHero } from "@/components/sections/project-detail-hero";
 import { ProjectGallery } from "@/components/sections/project-gallery";
+import { ProjectVideoShowcase } from "@/components/sections/project-video-showcase";
 import { ProjectMetaBar } from "@/components/ui/project-meta-bar";
 import { ProjectNav } from "@/components/ui/project-nav";
 import { ProjectOutcome } from "@/components/ui/project-outcome";
@@ -68,6 +69,14 @@ export default async function ProjectPage({
       </section>
 
       {project.outcome && <ProjectOutcome outcome={project.outcome} />}
+
+      {project.videoFileUrl && (
+        <ProjectVideoShowcase
+          videoUrl={project.videoFileUrl}
+          posterUrl={project.posterImageUrl}
+          title={project.title}
+        />
+      )}
 
       {project.gallery && project.gallery.length > 0 && (
         <ProjectGallery images={project.gallery} />
