@@ -7,6 +7,19 @@ export const servicesQuery = groq`*[_type == "service"] | order(_createdAt desc)
   deliverables
 }`;
 
+export const featuredProjectsQuery = groq`*[_type == "project" && featured == true] | order(_createdAt desc) {
+  _id,
+  title,
+  "slug": slug.current,
+  client,
+  "tags": coalesce(tags, []),
+  mediaType,
+  videoUrl,
+  "videoFileUrl": videoFile.asset->url,
+  "posterImageUrl": posterImage.asset->url,
+  featured
+}`;
+
 export const projectsQuery = groq`*[_type == "project"] | order(_createdAt desc) {
   _id,
   title,

@@ -3,6 +3,7 @@ import type { Post, Project, Service } from "@/lib/types";
 import { sanityClient } from "@/sanity/lib/client";
 import { isSanityConfigured } from "@/sanity/env";
 import {
+  featuredProjectsQuery,
   postBySlugQuery,
   postsQuery,
   projectBySlugQuery,
@@ -18,6 +19,17 @@ export async function getServices(): Promise<Service[]> {
     return services?.length ? services : fallbackServices;
   } catch {
     return fallbackServices;
+  }
+}
+
+export async function getFeaturedProjects(): Promise<Project[]> {
+  if (!isSanityConfigured) return fallbackProjects.filter((p) => p.featured);
+
+  try {
+    const projects = await sanityClient.fetch<Project[]>(featuredProjectsQuery);
+    return projects?.length ? projects : fallbackProjects.filter((p) => p.featured);
+  } catch {
+    return fallbackProjects.filter((p) => p.featured);
   }
 }
 

@@ -1222,6 +1222,334 @@ p {
   color: #ad9b7a;
 }
 
+/* ===================================================
+   FEATURED WORK SHOWCASE — Video Player Carousel
+   =================================================== */
+
+.featured-showcase {
+  padding: 6.4rem 0 5rem;
+}
+
+.featured-showcase__frame {
+  position: relative;
+  aspect-ratio: 21 / 9;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: #060403;
+  box-shadow: var(--shadow-soft);
+}
+
+.featured-showcase__media {
+  position: absolute;
+  inset: 0;
+}
+
+.featured-showcase__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.featured-showcase__poster {
+  object-fit: cover;
+  animation: featured-showcase-ken-burns 6s ease-in-out forwards;
+}
+
+@keyframes featured-showcase-ken-burns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.featured-showcase__fallback {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-surface), var(--bg-elevated));
+}
+
+/* veil */
+.featured-showcase__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 4, 3, 0.92) 0%,
+    rgba(5, 4, 3, 0.4) 40%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* info overlay */
+.featured-showcase__info {
+  position: absolute;
+  left: 0;
+  bottom: 3.2rem;
+  padding: 0 1.8rem;
+  z-index: 2;
+}
+
+.featured-showcase__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.featured-showcase__client {
+  color: var(--accent);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 0.3rem;
+}
+
+.featured-showcase__title {
+  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  line-height: 1.1;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.featured-showcase__arrow {
+  font-size: 0.7em;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.featured-showcase__link:hover .featured-showcase__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.featured-showcase__tags {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  color: var(--dim);
+}
+
+/* controls pill */
+.featured-showcase__controls {
+  position: absolute;
+  left: 0.8rem;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.44rem 0.56rem;
+  border: 1px solid rgba(219, 190, 143, 0.2);
+  border-radius: 999px;
+  background: rgba(8, 6, 4, 0.68);
+  backdrop-filter: blur(6px);
+  z-index: 3;
+}
+
+.featured-showcase__btn {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(217, 189, 144, 0.3);
+  border-radius: 999px;
+  background: rgba(16, 13, 9, 0.62);
+  color: #d8c9ae;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.featured-showcase__btn:hover {
+  border-color: rgba(228, 200, 150, 0.58);
+  background: rgba(215, 183, 125, 0.14);
+}
+
+.featured-showcase__btn--cinema {
+  margin-left: auto;
+  border-color: rgba(204, 176, 122, 0.48);
+  background: rgba(204, 176, 122, 0.12);
+  color: #f0e2c6;
+}
+
+.featured-showcase__btn--cinema:hover {
+  border-color: rgba(228, 200, 150, 0.7);
+  background: rgba(215, 183, 125, 0.22);
+}
+
+/* dot indicators */
+.featured-showcase__dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 0.4rem;
+}
+
+.featured-showcase__dot {
+  width: 6px;
+  height: 6px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(212, 192, 156, 0.35);
+  padding: 0;
+  cursor: pointer;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.3s ease;
+}
+
+.featured-showcase__dot--active {
+  width: 18px;
+  background: var(--accent);
+}
+
+/* arrow group */
+.featured-showcase__arrows {
+  display: flex;
+  gap: 0.25rem;
+}
+
+/* progress bar */
+.featured-showcase__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(212, 192, 156, 0.12);
+  z-index: 4;
+}
+
+.featured-showcase__progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  will-change: transform;
+}
+
+/* cinema modal */
+.featured-showcase__cinema {
+  position: fixed;
+  inset: 0;
+  z-index: 240;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.9rem, 2.2vw, 1.7rem);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(24, 18, 11, 0.24), rgba(2, 2, 1, 0.98) 72%),
+    rgba(2, 2, 1, 0.96);
+  backdrop-filter: blur(8px);
+}
+
+.featured-showcase__cinema-shell {
+  position: relative;
+  width: min(1320px, 100%);
+  height: min(86vh, 780px);
+}
+
+.featured-showcase__cinema-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(220, 191, 143, 0.32);
+  border-radius: 28px;
+  overflow: hidden;
+  background: #060403;
+  box-shadow: 0 38px 110px rgba(0, 0, 0, 0.55);
+}
+
+.featured-showcase__cinema-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.featured-showcase__cinema-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(62%, -62%);
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(219, 192, 147, 0.4);
+  border-radius: 999px;
+  background: rgba(6, 5, 3, 0.9);
+  color: #efe3cd;
+  cursor: pointer;
+  z-index: 12;
+  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.featured-showcase__cinema-close:hover {
+  transform: translate(62%, -62%) scale(1.05);
+  border-color: rgba(228, 200, 150, 0.64);
+  background: rgba(10, 8, 5, 0.95);
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .featured-showcase__frame {
+    aspect-ratio: 16 / 9;
+  }
+
+  .featured-showcase__info {
+    bottom: 3rem;
+    padding: 0 1.4rem;
+  }
+
+  .featured-showcase__title {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .featured-showcase__frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .featured-showcase__dots {
+    display: none;
+  }
+
+  .featured-showcase__info {
+    bottom: 3.4rem;
+    padding: 0 1rem;
+  }
+
+  .featured-showcase__controls {
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    padding: 0.3rem 0.4rem;
+  }
+
+  .featured-showcase__cinema-close {
+    transform: translate(30%, -30%);
+  }
+
+  .featured-showcase__cinema-close:hover {
+    transform: translate(30%, -30%) scale(1.05);
+  }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .featured-showcase__poster {
+    animation: none;
+  }
+}
+
 .cine-booking {
   padding: 5.2rem 0 6rem;
 }
