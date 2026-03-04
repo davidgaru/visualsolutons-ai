@@ -156,7 +156,16 @@ export function ProjectVideoShowcase({
                   onClick={togglePlay}
                   aria-label={isPlaying ? "Pause" : "Play"}
                 >
-                  {isPlaying ? "Pause" : "Play"}
+                  {isPlaying ? (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="6" y="4" width="4" height="16" />
+                      <rect x="14" y="4" width="4" height="16" />
+                    </svg>
+                  ) : (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  )}
                 </button>
 
                 <button
@@ -165,7 +174,15 @@ export function ProjectVideoShowcase({
                   onClick={toggleMute}
                   aria-label={isMuted ? "Unmute" : "Mute"}
                 >
-                  {isMuted ? "Unmute" : "Mute"}
+                  {isMuted ? (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M16.5 12A4.5 4.5 0 0 0 14 8v1.5l2.4 2.4c.06-.3.1-.62.1-.9zM19 12c0 1.2-.35 2.3-.95 3.25l1.1 1.1A7.96 7.96 0 0 0 21 12c0-4-2.7-7.3-6.4-8.3v2.1A5.98 5.98 0 0 1 19 12zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.5-1.42.9-2.25 1.16v2.1a8.03 8.03 0 0 0 3.95-1.98l1.78 1.78L21.23 19l-1.46-1.46L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+                    </svg>
+                  ) : (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.47 4.47 0 0 0 2.5-4zM14 3.2v2.1a6 6 0 0 1 0 13.4v2.1c4-.9 7-4.5 7-8.8s-3-7.9-7-8.8z" />
+                    </svg>
+                  )}
                 </button>
 
                 <button
@@ -174,7 +191,9 @@ export function ProjectVideoShowcase({
                   onClick={openCinema}
                   aria-label="Open cinema mode"
                 >
-                  Cinema Mode
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+                  </svg>
                 </button>
               </div>
             </div>
