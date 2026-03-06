@@ -287,35 +287,35 @@ export function SignatureServices() {
                   </motion.div>
                 </AnimatePresence>
                 <div className="neo-services__shade" aria-hidden />
+              </div>
 
-                <div className="neo-services__meta">
-                  <p>{active.title}</p>
-                  <span>{active.hint}</span>
+              <div className="neo-services__meta">
+                <p>{active.title}</p>
+                <span>{active.hint}</span>
 
-                  {serviceComparisonIds.length > 1 && (
-                    <div className="neo-services__mode-switch" aria-label="Comparison modes">
-                      {serviceComparisonIds.map((comparisonId) => {
-                        const clip = comparisons[comparisonId];
-                        const selected = comparisonId === previewComparisonId;
-                        return (
-                          <button
-                            key={`stage-${comparisonId}`}
-                            type="button"
-                            className={`neo-services__mode-pill${selected ? " is-active" : ""}`}
-                            onClick={() => setActiveComparisonId(comparisonId)}
-                          >
-                            {clip.label}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  <div className="neo-services__tags" aria-label="Service capabilities">
-                    {active.tags.map((tag) => (
-                      <em key={tag}>{tag}</em>
-                    ))}
+                {serviceComparisonIds.length > 1 && (
+                  <div className="neo-services__mode-switch" aria-label="Comparison modes">
+                    {serviceComparisonIds.map((comparisonId) => {
+                      const clip = comparisons[comparisonId];
+                      const selected = comparisonId === previewComparisonId;
+                      return (
+                        <button
+                          key={`stage-${comparisonId}`}
+                          type="button"
+                          className={`neo-services__mode-pill${selected ? " is-active" : ""}`}
+                          onClick={() => setActiveComparisonId(comparisonId)}
+                        >
+                          {clip.label}
+                        </button>
+                      );
+                    })}
                   </div>
+                )}
+
+                <div className="neo-services__tags" aria-label="Service capabilities">
+                  {active.tags.map((tag) => (
+                    <em key={tag}>{tag}</em>
+                  ))}
                 </div>
               </div>
             </Reveal>

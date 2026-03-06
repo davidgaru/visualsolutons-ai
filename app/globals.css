@@ -681,6 +681,7 @@ p {
 
 .neo-services__stage-wrap {
   min-width: 0;
+  position: relative;
 }
 
 .neo-services__stage {
@@ -1603,6 +1604,11 @@ p {
   display: grid;
   gap: 0.9rem;
   background: rgba(10, 8, 6, 0.66);
+  min-width: 0;
+}
+
+.cine-booking__form > * {
+  min-width: 0;
 }
 
 .cine-booking__fields {
@@ -1620,11 +1626,18 @@ p {
   color: #beac8d;
 }
 
+.booking-form textarea,
+.cine-booking__form textarea {
+  resize: vertical;
+  max-height: 12rem;
+}
+
 .booking-form input,
 .booking-form textarea,
 .cine-booking__form input,
 .cine-booking__form textarea {
   width: 100%;
+  min-width: 0;
   border: 1px solid rgba(212, 185, 137, 0.24);
   border-radius: 12px;
   background: rgba(17, 13, 9, 0.82);
@@ -1652,11 +1665,84 @@ p {
   font-size: 0.66rem;
 }
 
-.booking-form__chips,
 .booking-form__times {
   display: flex;
   gap: 0.44rem;
   flex-wrap: wrap;
+}
+
+.booking-form__date-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.46rem;
+}
+
+.booking-form__date-header .booking-form__label {
+  margin-bottom: 0;
+}
+
+.booking-form__week-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.week-nav__arrow {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(215, 189, 143, 0.24);
+  border-radius: 8px;
+  background: rgba(205, 173, 113, 0.08);
+  color: #dbc9a9;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 170ms ease, background 170ms ease;
+}
+
+.week-nav__arrow:hover:not(:disabled) {
+  border-color: rgba(223, 196, 145, 0.58);
+  background: rgba(206, 173, 113, 0.2);
+}
+
+.week-nav__arrow:disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.week-nav__label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.6rem;
+  color: #a69474;
+  min-width: 9ch;
+  text-align: center;
+}
+
+.booking-form__week-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.36rem;
+}
+
+.booking-form__week-strip .chip {
+  min-width: 0;
+  width: 100%;
+}
+
+.chip--disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.cine-booking__fields-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
 }
 
 .chip {
@@ -2676,18 +2762,28 @@ p {
   }
 
   .neo-services__selector {
-    overflow-x: auto;
+    overflow-x: visible;
+    padding: 0.5rem;
   }
 
   .neo-services__selector > div {
-    display: flex;
-    width: max-content;
-    min-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.32rem;
   }
 
   .neo-services__tab {
-    flex: 1 1 0;
-    min-width: min(205px, 72vw);
+    padding: 0.6rem 0.6rem;
+    border-radius: 14px;
+    min-width: 0;
+  }
+
+  .neo-services__tab-label {
+    font-size: 0.72rem;
+  }
+
+  .neo-services__tab-index {
+    font-size: 0.5rem;
   }
 
   .neo-services__experience,
@@ -2800,9 +2896,14 @@ p {
   }
 
   .neo-services__meta {
-    left: 0.72rem;
-    right: 0.72rem;
-    width: auto;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    margin-top: 0.6rem;
+    border-radius: 16px;
+    padding: 0.72rem 0.8rem;
   }
 
   .neo-services__mode-switch {
@@ -2944,6 +3045,22 @@ p {
 
   .svc-diff__card {
     padding: 1.2rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .cine-booking__fields-row {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-form__week-strip .chip {
+    padding: 0.26rem 0.2rem;
+    font-size: 0.58rem;
+    min-height: 1.7rem;
+  }
+
+  .week-nav__label {
+    font-size: 0.52rem;
   }
 }
 
