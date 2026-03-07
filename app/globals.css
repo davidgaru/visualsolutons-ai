@@ -244,6 +244,22 @@ p {
   box-shadow: none;
 }
 
+.button--ghost:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.button--ghost:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px rgba(204, 176, 122, 0.6);
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .site-header {
   position: fixed;
   top: 0.85rem;
@@ -351,6 +367,10 @@ p {
   gap: 5px;
   flex-direction: column;
   cursor: pointer;
+}
+
+.menu-toggle:hover {
+  background: rgba(209, 181, 131, 0.1);
 }
 
 .menu-toggle span {
@@ -1784,8 +1804,8 @@ p {
 }
 
 .week-nav__arrow:disabled {
-  opacity: 0.3;
-  pointer-events: none;
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .week-nav__label {
@@ -1835,6 +1855,14 @@ p {
   align-items: center;
   gap: 0.12rem;
   flex-direction: column;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.chip:hover:not(.chip--disabled) {
+  border-color: rgba(223, 196, 145, 0.4);
+  background: rgba(206, 173, 113, 0.16);
+  color: #f0e4cc;
 }
 
 .chip--active {
@@ -2640,6 +2668,12 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.66rem;
+  transition: color 150ms ease;
+}
+
+.site-footer__links a:hover,
+.site-footer__meta a:hover {
+  color: var(--accent);
 }
 
 .site-footer__social {
@@ -2657,12 +2691,13 @@ p {
   border-radius: 50%;
   border: 1px solid rgba(204, 176, 122, 0.3);
   color: var(--accent);
-  transition: background 180ms ease, border-color 180ms ease;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
 .site-footer__social a:hover {
   background: rgba(204, 176, 122, 0.14);
   border-color: rgba(204, 176, 122, 0.5);
+  transform: scale(1.1);
 }
 
 .site-footer__meta p {
@@ -3613,6 +3648,12 @@ p {
   background: rgba(10, 8, 5, 0.75);
 }
 
+.project-video-showcase__play-large:focus-visible,
+.project-video-showcase__btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px rgba(204, 176, 122, 0.6);
+}
+
 .project-video-showcase__controls {
   position: absolute;
   left: 0.8rem;
@@ -3822,11 +3863,12 @@ p {
   padding: 0.5rem;
   line-height: 1;
   opacity: 0.7;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .lightbox__close:hover {
   opacity: 1;
+  transform: scale(1.1);
 }
 
 .lightbox__nav {
