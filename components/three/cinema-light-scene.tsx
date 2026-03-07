@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import type { Mesh, Points } from "three";
 import {
   AdditiveBlending,
@@ -32,7 +32,7 @@ function DustField() {
   }, []);
 
   useFrame((state, delta) => {
-    if (!pointsRef.current) return;
+    if (!visibleRef.current || !pointsRef.current) return;
     pointsRef.current.rotation.y += delta * 0.006;
     pointsRef.current.position.x = Math.sin(state.clock.elapsedTime * 0.08) * 0.08;
     pointsRef.current.position.y = Math.cos(state.clock.elapsedTime * 0.11) * 0.06;
@@ -59,6 +59,7 @@ function ProjectorRig() {
   const lensRef = useRef<Mesh>(null);
 
   useFrame((state) => {
+    if (!visibleRef.current) return;
     const t = state.clock.elapsedTime;
 
     if (beamPrimaryRef.current) {
@@ -129,6 +130,7 @@ function VignettePlates() {
   const rightRef = useRef<Mesh>(null);
 
   useFrame((state) => {
+    if (!visibleRef.current) return;
     const t = state.clock.elapsedTime;
 
     if (leftRef.current) {
@@ -154,16 +156,43 @@ function VignettePlates() {
   );
 }
 
-export function CinemaLightScene() {
+const visibleRef = { current: true };
+
+function SceneContents() {
   return (
-    <div className="cinema-light-scene" aria-hidden>
-      <Canvas camera={{ position: [0, 0, 8], fov: 45 }} dpr={[1, 1.5]}>
-        <color attach="background" args={["#070604"]} />
-        <fog attach="fog" args={["#070604", 4, 16]} />
-        <ambientLight intensity={0.16} />
-        <ProjectorRig />
-        <DustField />
-        <VignettePlates />
+    <>
+      <color attach="background" args={["#070604"]} />
+      <fog attach="fog" args={["#070604", 4, 16]} />
+      <ambientLight intensity={0.16} />
+      <ProjectorRig />
+      <DustField />
+      <VignettePlates />
+    </>
+  );
+}
+
+export function CinemaLightScene() {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={wrapperRef} className="cinema-light-scene" aria-hidden>
+      <Canvas camera={{ position: [0, 0, 8], fov: 45 }} dpr={[1, 1.5]} frameloop="always">
+        <SceneContents />
       </Canvas>
     </div>
   );

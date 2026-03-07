@@ -1,6 +1,7 @@
 import { BookingPanel } from "@/components/sections/booking-panel";
 import { ClientsStrip } from "@/components/sections/clients-strip";
 import { FeaturedWorkShowcase } from "@/components/sections/featured-work-showcase";
+import { HomeBgVideo } from "@/components/sections/home-bg-video";
 import { HomeHero } from "@/components/sections/home-hero";
 import { SignatureServices } from "@/components/sections/signature-services";
 import { getFeaturedProjects } from "@/lib/content";
@@ -13,6 +14,7 @@ export default async function HomePage() {
 
   return (
     <main className="home-cinematic">
+      <HomeBgVideo />
       <HomeHero />
       <ClientsStrip />
       <SignatureServices />

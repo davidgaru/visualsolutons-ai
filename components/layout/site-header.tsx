@@ -17,11 +17,12 @@ export function SiteHeader() {
         <LogoMark compact className="site-header__logo" />
 
         <button
-          className="menu-toggle"
+          className={clsx("menu-toggle", menuOpen && "menu-toggle--open")}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((prev) => !prev)}
         >
+          <span />
           <span />
           <span />
         </button>

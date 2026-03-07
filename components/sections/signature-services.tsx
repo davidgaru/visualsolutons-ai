@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Reveal } from "@/components/ui/reveal";
 import { VideoCompareSlider } from "@/components/ui/video-compare-slider";
@@ -148,11 +148,13 @@ export function SignatureServices() {
       : (modalComparisonIds[0] ?? null);
   const currentModalComparison = currentModalComparisonId ? comparisons[currentModalComparisonId] : null;
 
+  const isMobile = useCallback(() => window.matchMedia("(max-width: 900px)").matches, []);
+
   const activateService = (index: number, openReel = false) => {
     const service = services[index];
     setActiveIndex(index);
     setActiveComparisonId(getDefaultComparison(service.id));
-    if (openReel) setIsReelOpen(true);
+    if (openReel && !isMobile()) setIsReelOpen(true);
   };
 
   const showPrev = () => {
