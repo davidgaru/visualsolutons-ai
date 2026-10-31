@@ -14,6 +14,7 @@ Researched and published to Sanity on 2026-10-31. The founder relationship is su
 - [TIME: Jon Snow supercut](https://time.com/4391364/game-of-thrones-jon-snow-supercut/), July 1, 2016: features his work as The Garo Studios (article misspells surname as “Garuchara”). This supports **work featured in TIME**, not a TIME award or TIME100 inclusion.
 - [Beka Film Productions official biography](https://bekafilmproductions.com/about-us/): AGBO experience, TheGaroStudios, trailer work on *Shindisi*, *Negative Numbers*, *Brighton 4th*, *Invisible Games*, and *From Life to Life*. Omitted dated student status and audience counts.
 - [Personal LinkedIn profile](https://www.linkedin.com/in/daviti-garuchava-82a750134) links TheGaroStudios and confirms the identity across these sources.
+- [TheGaroStudios YouTube channel](https://www.youtube.com/@TheGaroStudios) is the destination for Daviti’s “Film & trailer editing” link.
 - [BMG company interview](https://bm.ge/news/visual-solutions-ai-qartuli-startapi-romelits-kinosa-da-sareklamo-industriashi-globalur-proeqtebze-mushaobs), January 14, 2026, names both founders.
 - Portrait copied unchanged from the founder’s own local portfolio cover into `public/images/daviti-garuchava.png`, and uploaded to Sanity. Visually verified cover explicitly titled “Daviti Garuchava”, showing him working with film lighting equipment. CSS frames the portrait in the lower part of the cover. Next.js serves responsive compressed derivatives; no generated or unrelated portrait is used.
 

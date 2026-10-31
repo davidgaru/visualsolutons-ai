@@ -40,7 +40,7 @@ export const fallbackFounders: Founder[] = [
     credentials: [
       { _key: "forbes", label: "Forbes Georgia Under 30 · 2026", url: "https://forbes.ge/2026-tslis-under-30-is-gamarjvebulebi-ukve-tsnobilia-future-is-under-30/" },
       { _key: "time", label: "Work featured in TIME", url: "https://time.com/4391364/game-of-thrones-jon-snow-supercut/" },
-      { _key: "film", label: "Film & trailer editing", url: "https://bekafilmproductions.com/about-us/" }
+      { _key: "film", label: "Film & trailer editing", url: "https://www.youtube.com/@TheGaroStudios" }
     ]
   }
 ];
