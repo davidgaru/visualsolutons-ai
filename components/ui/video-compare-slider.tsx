@@ -1,5 +1,7 @@
 "use client";
 
+import { AdaptiveVideo } from "@/components/ui/adaptive-video";
+
 import { useEffect, useId, useRef, useState } from "react";
 
 type VideoCompareSliderProps = {
@@ -40,6 +42,8 @@ export function VideoCompareSlider({
 
     const syncTimer = window.setInterval(() => {
       if (before.readyState < 2 || after.readyState < 2) return;
+      const bounds = before.getBoundingClientRect();
+      if (document.hidden || bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
 
       keepPlaying(before);
       keepPlaying(after);
@@ -61,7 +65,7 @@ export function VideoCompareSlider({
 
   return (
     <div className={composedClassName}>
-      <video
+      <AdaptiveVideo
         ref={afterRef}
         src={afterSrc}
         className="video-compare__video"
@@ -69,11 +73,11 @@ export function VideoCompareSlider({
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
       />
 
       <div className="video-compare__before" style={{ clipPath: `inset(0 ${100 - split}% 0 0)` }}>
-        <video
+        <AdaptiveVideo
           ref={beforeRef}
           src={beforeSrc}
           className="video-compare__video"
@@ -81,7 +85,7 @@ export function VideoCompareSlider({
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           onLoadedData={() => {
             if (!afterRef.current || !beforeRef.current) return;
             afterRef.current.currentTime = beforeRef.current.currentTime;

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "studio": "sanity dev"
+    "studio": "sanity dev",
+    "test:media": "node --test scripts/adaptive-video.test.cjs"
   },
   "dependencies": {
     "@fontsource/manrope": "^5.1.1",
@@ -34,6 +35,7 @@
     "@types/react-dom": "^18.3.5",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.24",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "jsdom": "^26.1.0"
   }
 }

@@ -71,7 +71,7 @@ It is intentionally a placeholder route to connect later with:
 
 ## Next content actions
 
-1. Replace placeholder team info on `about` page.
+1. Maintain founder profiles in Studio → Site Settings → Founders after the initial [CMS synchronization](docs/founder-sources.md#cms-synchronization).
 2. Add real case studies and upload videos in Sanity Studio.
 3. Add official legal copy for privacy and terms.
 4. Add your final contact email and optional booking URL.
@@ -79,4 +79,16 @@ It is intentionally a placeholder route to connect later with:
 ## Brand assets
 
 - Primary logo image in active use: `public/images/visualsolutionsai_logo.jpeg`
+
+## Media delivery
+
+The original footage is preserved alongside compact and desktop delivery versions.
+Run `python3 scripts/optimize-media.py` after adding or replacing local footage,
+then `python3 scripts/validate-media.py` and `npm run test:media` to verify it.
+The generator requires ffmpeg. See [delivery measurements and validation](docs/performance.md).
+CMS project videos use the authenticated `scripts/optimize-cms-media.ts` generator;
+commit `lib/cms-media-manifest.json` after uploading their delivery versions.
+
+Deploy the source project with `public/videos/optimized` and
+`lib/media-manifest.json` together; they contain the matched delivery URLs.
 # visualsolutions-ai

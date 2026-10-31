@@ -1,5 +1,7 @@
 "use client";
 
+import { AdaptiveVideo } from "@/components/ui/adaptive-video";
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -22,7 +24,7 @@ export function ProjectDetailHero({ project }: ProjectDetailHeroProps) {
   function renderMedia() {
     if (project.mediaType === "youtube" && project.videoUrl) {
       return (
-        <iframe
+        <iframe loading="lazy"
           className="project-hero__media"
           src={project.videoUrl}
           title={project.title}
@@ -34,14 +36,14 @@ export function ProjectDetailHero({ project }: ProjectDetailHeroProps) {
 
     if (project.mediaType === "upload" && project.videoFileUrl) {
       return (
-        <video
+        <AdaptiveVideo
           className="project-hero__media"
           src={project.videoFileUrl}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
         />
       );
     }
