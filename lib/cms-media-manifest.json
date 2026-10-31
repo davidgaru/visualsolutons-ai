@@ -1,0 +1,67 @@
+{
+  "https://cdn.sanity.io/files/8qq16vmi/production/533aaef86a2d8e777b79767b89d4b0c66926f2e9.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/6da58b492fa04d645212454c6bd65fe9fdc7aba4.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/fc8d2ff8d6eb21821caeae8ff62a4e9b4fa5e5df.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/014149911f3db61639c8b4bdbfb2662836a88c0e-2752x1536.jpg"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/7ed23a3e5b93b9c9fe5c3243210d1621a4f58332.mov": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/7953c5d808d876e3dc91093a42899dea55a8c94e.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/e67f0be3e8ce29b7875698f42615fd30c95bdc87.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/ead3472c8b7b1a9cd035cb4b917c286e596a9652-2752x1536.png"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/01c197dcb0cb98501e7562bbb5b7f5f842b69a18.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/47818418a21dd4575b5fe1ea793b5485fc671bbd.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/574c4785c96c4b9724fe5cc09f887efa0b096dce.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/b487fcc5663af5fba7afaeacf14b9836967d9a0f-2752x1536.png"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/7a8adf2db7649f9b62286c7acb215469857d8035.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/6cc8108ff41d8af881b1bcf5a4b14a938ec54d7e.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/b92126f291262d7fdb81449da92932700288d7a8.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/31ec0b0db669184269f2b95fb2b0e1b356146b52-2752x1536.jpg"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/5a6fc23c983442c199f8a003be7258cc64659eb9.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/59b12f14cce8a56d85855b64c6d0b932a795d1dc.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/b8fd12491516f6b1737f990f1d5387b7a4d96e64.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/f26db08d744b94034d8cbdb7d26f4e337fe003f4-2752x1536.jpg"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/549e9512739e967f293e7a051a19b2033ad8c4a5.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/e20e90e3e818170e06edc719da80942798632849.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/65610f8f8e54d3ff018f2b46344665a7932f70ee.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/99bae5351221b4b55146475814cbd95efd0f6f52-2752x1536.jpg"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/e509abdfa60bef984a9529a9bcdb5868e8ca2990.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/473674f7ebd0541e780b95c9593df432e798e143.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/2d6413e421afed04f1f16dbb3f7b30430c752171.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/8810511d247fd8dcd2fa5006cc502face89a5445-2752x1536.jpg"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/226a36f1ab07fc287cad7e2059f45d6c61ee5277.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/8e10c9ce78de45466ea73e8e968d18c4ed9d0e14.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/283ab67ed80538d9818c6a072fb0c082b0ddce74.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/9eb8a43e16b5ec4c465632a766945d1ab93c64f1-2752x1536.png"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/0d8a23e67c204bd25810f34e60edaa996fcdc3c1.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/5826490fcc5dd5acdd459e2589cca31ede27ef37.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/04108f78db0a11398ad433e42a3c83865e222e2e.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/0dd3a28bbff3dce963991164e476bc902873b84a-2752x1536.jpg"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/f473969e1a860426856a47033322cdd1205bf304.mov": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/f0ad1459f3903c908f12e32bb3bff42f54cf0c05.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/ab5332612ee8a70637cb2f665be097dec15fed8e.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/3b6985bd2956c353091a8f8af7d5c0f73b3ce8cd-2752x1536.jpg"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/71f0aac2d23c5618a81fec8e6e5fa792f66194d7.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/9eaf7812e1697343ffb95d77e366a17f8e5aefa3.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/c85cbb8345cfeb0ff20836632102f430c9d9aaa0.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/4acdea4d092693d98d769b6c29b7ffac32c7525a-2752x1536.jpg"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/66b373a9bf8fc0028b4834426c6f5d11c5d111f6.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/6849f3a735e76612fa93e11520e516920fc8b1cd.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/2d3a29cd6252dff69ac9b9d6c002eebb8766ea9d.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/1fb18d26d3797385ed16ec07e7df885092c4a4dc-2752x1536.jpg"
+  },
+  "https://cdn.sanity.io/files/8qq16vmi/production/7cbd6b7ce7e5c51cb0bb751efb2e297bef451317.mp4": {
+    "desktop": "https://cdn.sanity.io/files/8qq16vmi/production/b2054ee7b55715a559617abd20fa112ae886e0a5.mp4",
+    "compact": "https://cdn.sanity.io/files/8qq16vmi/production/61d9fa2b57ad9cbeef5d7049699905b57c2f9b4c.mp4",
+    "poster": "https://cdn.sanity.io/images/8qq16vmi/production/fbc92539291edb2317f07ea7aa66fd2c9a5f33ce-2752x1536.jpg"
+  }
+}

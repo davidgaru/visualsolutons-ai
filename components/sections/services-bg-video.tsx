@@ -1,16 +1,18 @@
 "use client";
 
+import { AdaptiveVideo } from "@/components/ui/adaptive-video";
+
 export function ServicesBgVideo() {
   return (
     <div className="services-bg-video" aria-hidden>
-      <video
+      <AdaptiveVideo
         className="services-bg-video__el"
         src="/videos/services-bg.mp4"
         autoPlay
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
       />
     </div>
   );

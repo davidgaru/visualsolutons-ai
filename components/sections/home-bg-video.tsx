@@ -1,5 +1,7 @@
 "use client";
 
+import { AdaptiveVideo } from "@/components/ui/adaptive-video";
+
 import { useCallback, useMemo, useState } from "react";
 
 const rawVideoSources = [
@@ -26,7 +28,7 @@ export function HomeBgVideo() {
 
   return (
     <div className="home-bg-video" aria-hidden>
-      <video
+      <AdaptiveVideo
         key={sources[activeIndex]}
         className="home-bg-video__el"
         src={sources[activeIndex]}
@@ -34,7 +36,7 @@ export function HomeBgVideo() {
         muted
         loop={false}
         playsInline
-        preload="auto"
+        preload="none"
         onEnded={playNext}
         onError={playNext}
         onLoadedMetadata={(event) => {

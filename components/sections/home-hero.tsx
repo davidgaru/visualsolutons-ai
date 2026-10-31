@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ExactLogo } from "@/components/branding/exact-logo";
 import { HeroVideoLoop } from "@/components/sections/hero-video-loop";
-import { CinemaLightScene } from "@/components/three/cinema-light-scene";
+import { DeferredCinemaLight } from "@/components/three/deferred-cinema-light";
 
 export function HomeHero() {
   const ref = useRef<HTMLElement>(null);
@@ -19,7 +19,7 @@ export function HomeHero() {
 
   return (
     <section ref={ref} className="neo-hero">
-      <CinemaLightScene />
+      <DeferredCinemaLight />
       <HeroVideoLoop />
       <div className="neo-hero__veil" aria-hidden />
 

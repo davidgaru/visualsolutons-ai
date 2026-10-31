@@ -38,7 +38,7 @@ function EmbedBlock({ value }: { value: { url?: string; caption?: string } }) {
       <Reveal>
         <figure className="pt-embed">
           <div className="pt-embed__wrapper">
-            <iframe
+            <iframe loading="lazy"
               src={`https://www.youtube.com/embed/${youtubeId}`}
               title="YouTube video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -59,7 +59,7 @@ function EmbedBlock({ value }: { value: { url?: string; caption?: string } }) {
       <Reveal>
         <figure className="pt-embed">
           <div className="pt-embed__wrapper">
-            <iframe
+            <iframe loading="lazy"
               src={`https://player.vimeo.com/video/${vimeoId}?dnt=1`}
               title="Vimeo video"
               allow="autoplay; fullscreen; picture-in-picture"
@@ -80,7 +80,7 @@ function EmbedBlock({ value }: { value: { url?: string; caption?: string } }) {
       <Reveal>
         <figure className="pt-embed">
           <div className="pt-embed__wrapper">
-            <iframe
+            <iframe loading="lazy"
               src={fbUrl}
               title="Facebook video"
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
@@ -181,6 +181,7 @@ const components: PortableTextComponents = {
             <Image
               src={url}
               alt={value.alt || ""}
+              sizes="(max-width: 900px) 100vw, 1200px"
               width={1400}
               height={800}
               className="pt-image__img"

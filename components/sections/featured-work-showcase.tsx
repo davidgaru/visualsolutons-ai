@@ -1,13 +1,16 @@
 "use client";
 
+import { AdaptiveVideo } from "@/components/ui/adaptive-video";
+
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/types";
@@ -30,9 +33,11 @@ const SWIPE_THRESHOLD = 50;
 /* ------------------------------------------------------------------ */
 
 export function FeaturedWorkShowcase({ projects }: FeaturedWorkShowcaseProps) {
-  const slides = projects.filter(
+  const sectionRef = useRef<HTMLElement>(null);
+  const isVisible = useInView(sectionRef, { amount: 0.01 });
+  const slides = useMemo(() => projects.filter(
     (p) => typeof p.slug === "string" && p.title,
-  );
+  ), [projects]);
 
   const [current, setCurrent] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -86,7 +91,7 @@ export function FeaturedWorkShowcase({ projects }: FeaturedWorkShowcaseProps) {
   /* ---- start / stop progress loop ---- */
   useEffect(() => {
     const slide = slides[current];
-    if (!slide) return;
+    if (!slide || !isVisible || isCinemaOpen) return;
     const hasVideo = !!getVideoSrc(slide);
 
     // clear old image timer
@@ -118,7 +123,7 @@ export function FeaturedWorkShowcase({ projects }: FeaturedWorkShowcaseProps) {
       cancelAnimationFrame(rafRef.current);
       if (imageTimerRef.current) clearTimeout(imageTimerRef.current);
     };
-  }, [current, slides, multi, goNext, tickProgress]);
+  }, [current, slides, multi, goNext, tickProgress, isVisible, isCinemaOpen]);
 
   /* ---- keyboard ---- */
   useEffect(() => {
@@ -225,7 +230,7 @@ export function FeaturedWorkShowcase({ projects }: FeaturedWorkShowcaseProps) {
 
   return (
     <>
-      <section className="featured-showcase">
+      <section ref={sectionRef} className="featured-showcase">
         <div className="container">
           <div
             className="featured-showcase__frame"
@@ -243,7 +248,7 @@ export function FeaturedWorkShowcase({ projects }: FeaturedWorkShowcaseProps) {
                 transition={{ duration: 0.5 }}
               >
                 {videoSrc ? (
-                  <video
+                  <AdaptiveVideo
                     ref={videoRef}
                     className="featured-showcase__video"
                     src={videoSrc}
@@ -421,8 +426,9 @@ export function FeaturedWorkShowcase({ projects }: FeaturedWorkShowcaseProps) {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="featured-showcase__cinema-panel">
-                    <video
+                    <AdaptiveVideo
                       ref={cinemaVideoRef}
+                      fullResolution
                       className="featured-showcase__cinema-video"
                       src={videoSrc}
                       poster={slide.posterImageUrl}

@@ -1,5 +1,7 @@
 "use client";
 
+import { AdaptiveVideo } from "@/components/ui/adaptive-video";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -112,7 +114,7 @@ export function ProjectVideoShowcase({
 
           <Reveal delay={0.06}>
             <div className="project-video-showcase__frame">
-              <video
+              <AdaptiveVideo
                 ref={inlineVideoRef}
                 className="project-video-showcase__video"
                 src={videoUrl}
@@ -223,8 +225,9 @@ export function ProjectVideoShowcase({
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="project-video-showcase__cinema-panel">
-                    <video
+                    <AdaptiveVideo
                       ref={cinemaVideoRef}
+                      fullResolution
                       className="project-video-showcase__cinema-video"
                       src={videoUrl}
                       poster={posterUrl}

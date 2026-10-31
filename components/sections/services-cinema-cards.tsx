@@ -1,5 +1,7 @@
 "use client";
 
+import { AdaptiveVideo } from "@/components/ui/adaptive-video";
+
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState, useCallback } from "react";
 
@@ -106,13 +108,14 @@ function ServiceCard({ service, index }: { service: ServiceCardData; index: numb
       onMouseLeave={handleMouseLeave}
     >
       <div className="svc-card__media">
-        <video
+        <AdaptiveVideo
           ref={videoRef}
           src={service.mediaSrc}
+          autoPlay={!canHover}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           className="svc-card__video"
         />
         <div className="svc-card__shade" aria-hidden />

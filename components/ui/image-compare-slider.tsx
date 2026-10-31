@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import Image from "next/image";
 
 type ImageCompareSliderProps = {
   beforeSrc: string;
@@ -26,10 +27,10 @@ export function ImageCompareSlider({
 
   return (
     <div className={composedClassName}>
-      <img src={afterSrc} alt={afterLabel} className="video-compare__video" draggable={false} />
+      <Image src={afterSrc} alt={afterLabel} fill sizes="(max-width: 900px) 100vw, 1200px" className="video-compare__video" draggable={false} />
 
       <div className="video-compare__before" style={{ clipPath: `inset(0 ${100 - split}% 0 0)` }}>
-        <img src={beforeSrc} alt={beforeLabel} className="video-compare__video" draggable={false} />
+        <Image src={beforeSrc} alt={beforeLabel} fill sizes="(max-width: 900px) 100vw, 1200px" className="video-compare__video" draggable={false} />
       </div>
 
       <div className="video-compare__badges" aria-hidden>

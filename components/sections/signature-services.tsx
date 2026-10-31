@@ -1,8 +1,10 @@
 "use client";
 
+import { AdaptiveVideo } from "@/components/ui/adaptive-video";
+
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Reveal } from "@/components/ui/reveal";
 import { VideoCompareSlider } from "@/components/ui/video-compare-slider";
@@ -126,6 +128,8 @@ function getDefaultComparison(serviceId: ServiceId): ComparisonId | null {
 }
 
 export function SignatureServices() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isVisible = useInView(sectionRef, { amount: 0.01 });
   const [activeIndex, setActiveIndex] = useState(0);
   const [isReelOpen, setIsReelOpen] = useState(false);
   const [isInteractionPaused, setIsInteractionPaused] = useState(false);
@@ -174,7 +178,7 @@ export function SignatureServices() {
   };
 
   useEffect(() => {
-    if (isReelOpen || isInteractionPaused) return;
+    if (isReelOpen || isInteractionPaused || !isVisible) return;
 
     const intervalId = window.setInterval(() => {
       setActiveIndex((current) => {
@@ -187,7 +191,7 @@ export function SignatureServices() {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [isReelOpen, isInteractionPaused]);
+  }, [isReelOpen, isInteractionPaused, isVisible]);
 
   useEffect(() => {
     if (!isReelOpen) return;
@@ -218,7 +222,7 @@ export function SignatureServices() {
 
   return (
     <>
-      <section className="neo-services">
+      <section ref={sectionRef} className="neo-services">
         <div className="container">
           <Reveal>
             <p className="eyebrow">Services</p>
@@ -275,7 +279,7 @@ export function SignatureServices() {
                         afterLabel={previewComparison.afterLabel}
                       />
                     ) : (
-                      <video
+                      <AdaptiveVideo
                         key={active.video}
                         src={active.video}
                         className="neo-services__video"
@@ -283,7 +287,7 @@ export function SignatureServices() {
                         muted
                         loop
                         playsInline
-                        preload="metadata"
+                        preload="none"
                       />
                     )}
                   </motion.div>
@@ -373,15 +377,16 @@ export function SignatureServices() {
                         afterLabel={currentModalComparison.afterLabel}
                       />
                     ) : (
-                      <video
+                      <AdaptiveVideo
                         key={`reel-${active.video}`}
+                        fullResolution
                         src={active.video}
                         className="neo-services__reel-video"
                         autoPlay
                         muted
                         loop
                         playsInline
-                        preload="auto"
+                        preload="none"
                       />
                     )}
 
